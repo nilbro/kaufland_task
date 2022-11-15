@@ -38,14 +38,14 @@ services:
       kafka-topics --bootstrap-server broker:29092 --list
 
       echo -e 'Creating kafka topics'
-      kafka-topics --bootstrap-server broker:29092 --create --if-not-exists --topic input-topic --partitions 10
+      kafka-topics --bootstrap-server broker:29092 --create --if-not-exists --topic data-input --partitions 10
 
 
       echo -e 'Successfully created the following topics:'
       kafka-topics --bootstrap-server broker:29092 --list
 
-      echo -e 'Describing topic input-topic:'
-      kafka-topics --bootstrap-server=broker:29092 --describe --topic input-topic
+      echo -e 'Describing topic data-input:'
+      kafka-topics --bootstrap-server=broker:29092 --describe --topic data-input
       "
 
   producer:
@@ -60,16 +60,16 @@ services:
       "
       kafkacat -V
       
-      cat /sample.txt | kafkacat -b broker:29092 -t input-topic -P -K: -p 0
-      cat /sample.txt | kafkacat -b broker:29092 -t input-topic -P -K: -p 1
-      cat /sample.txt | kafkacat -b broker:29092 -t input-topic -P -K: -p 2
-      cat /sample.txt | kafkacat -b broker:29092 -t input-topic -P -K: -p 3
-      cat /sample.txt | kafkacat -b broker:29092 -t input-topic -P -K: -p 4
-      cat /sample.txt | kafkacat -b broker:29092 -t input-topic -P -K: -p 5
-      cat /sample.txt | kafkacat -b broker:29092 -t input-topic -P -K: -p 6
-      cat /sample.txt | kafkacat -b broker:29092 -t input-topic -P -K: -p 7
-      cat /sample.txt | kafkacat -b broker:29092 -t input-topic -P -K: -p 8
-      cat /sample.txt | kafkacat -b broker:29092 -t input-topic -P -K: -p 9
+      cat /sample.txt | kafkacat -b broker:29092 -t data-input -P -K: -p 0
+      cat /sample.txt | kafkacat -b broker:29092 -t data-input -P -K: -p 1
+      cat /sample.txt | kafkacat -b broker:29092 -t data-input -P -K: -p 2
+      cat /sample.txt | kafkacat -b broker:29092 -t data-input -P -K: -p 3
+      cat /sample.txt | kafkacat -b broker:29092 -t data-input -P -K: -p 4
+      cat /sample.txt | kafkacat -b broker:29092 -t data-input -P -K: -p 5
+      cat /sample.txt | kafkacat -b broker:29092 -t data-input -P -K: -p 6
+      cat /sample.txt | kafkacat -b broker:29092 -t data-input -P -K: -p 7
+      cat /sample.txt | kafkacat -b broker:29092 -t data-input -P -K: -p 8
+      cat /sample.txt | kafkacat -b broker:29092 -t data-input -P -K: -p 9
 
       "
 
