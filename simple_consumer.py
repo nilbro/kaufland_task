@@ -1,4 +1,4 @@
-from kafka import KafkaConsumer, KafkaProducer, KafkaAdminClient
+from kafka import KafkaConsumer, KafkaProducer
 
 
 def simple_consumer():
