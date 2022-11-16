@@ -65,3 +65,12 @@ Start pushing sample data in ``data-input`` topic
 ```bash
 $ docker-compose up -d
 ```
+
+## Scalable Consumer
+
+### Requirements
+
+1. The consumer should be scalable. Multiple workers should work concurrently.
+2. Each partition should be consumed exactly one worker.
+
+To meet the requirements, a consumer group with 10 consumers (= number of partitions) should be used.
