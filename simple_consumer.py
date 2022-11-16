@@ -6,6 +6,10 @@ class Consumer():
         self.c = KafkaConsumer("data-input", bootstrap_servers="localhost:9092", group_id=id)
 
     def consume_message(self):
+        """
+        1. Consumes messages from a topic
+        2. Sort messages received within a time frame
+        """        
         self.local_cache = []
 
         while True:
@@ -17,6 +21,9 @@ class Consumer():
             self.send_messages()
 
     def send_messages(self):
+        """
+        Sends messages to a topic
+        """        
         producer = KafkaProducer(bootstrap_servers=["localhost:9092"])
         for msg in self.local_cache:
             print('Sending messages to output-topic....')

@@ -1,6 +1,8 @@
 from simple_consumer import Consumer
 
 if __name__ == "__main__":
+
+    # define 10 consumers in a single Consumer Group
     c0 = Consumer('my-group')
     c1 = Consumer('my-group')
     c2 = Consumer('my-group')
