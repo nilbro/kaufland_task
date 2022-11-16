@@ -19,6 +19,7 @@ class Consumer():
     def send_messages(self):
         producer = KafkaProducer(bootstrap_servers=["localhost:9092"])
         for msg in self.local_cache:
+            print('Sending messages to output-topic....')
             producer.send("data-output", msg.encode("utf-8"))
 
 
