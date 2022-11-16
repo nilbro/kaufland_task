@@ -96,3 +96,6 @@ Start pushing sample data in ``data-input`` topic
 ```bash
 $ docker-compose up -d
 ```
+
+### Note
+For the sake of simplicity no Exception Handling or Unit Testing has been performed
