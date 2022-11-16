@@ -23,7 +23,7 @@ services:
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
       KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
       KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
-      KAFKA_LOG_CLEANUP_POLICY: compact
+    #  KAFKA_LOG_CLEANUP_POLICY: delete
 
   init-kafka:
     image: confluentinc/cp-kafka:7.0.1
@@ -39,6 +39,7 @@ services:
 
       echo -e 'Creating kafka topics'
       kafka-topics --bootstrap-server broker:29092 --create --if-not-exists --topic data-input --partitions 10
+      kafka-topics --bootstrap-server broker:29092 --create --if-not-exists --topic data-output --partitions 1
 
 
       echo -e 'Successfully created the following topics:'
@@ -53,13 +54,12 @@ services:
     container_name: sender
     depends_on:
       - init-kafka
+      - broker
     volumes:
       - ${PWD}/sample.txt:/sample.txt
     entrypoint: [ '/bin/sh', '-c' ]
     command:  |
       "
-      kafkacat -V
-      
       cat /sample.txt | kafkacat -b broker:29092 -t data-input -P -K: -p 0
       cat /sample.txt | kafkacat -b broker:29092 -t data-input -P -K: -p 1
       cat /sample.txt | kafkacat -b broker:29092 -t data-input -P -K: -p 2
@@ -70,7 +70,6 @@ services:
       cat /sample.txt | kafkacat -b broker:29092 -t data-input -P -K: -p 7
       cat /sample.txt | kafkacat -b broker:29092 -t data-input -P -K: -p 8
       cat /sample.txt | kafkacat -b broker:29092 -t data-input -P -K: -p 9
-
       "
 
       
